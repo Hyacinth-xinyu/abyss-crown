@@ -13,10 +13,11 @@ file(GLOB ABYSS_CROWN_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src
 
 add_executable(abyss_crown ${ABYSS_CROWN_SOURCES})
 target_include_directories(abyss_crown PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_link_libraries(abyss_crown PRIVATE SDL2::SDL2 SDL2_ttf::SDL2_ttf)
 
 if(TARGET SDL2::SDL2main)
-    target_link_libraries(abyss_crown PRIVATE SDL2::SDL2main)
+    target_link_libraries(abyss_crown PRIVATE SDL2::SDL2main SDL2_ttf::SDL2_ttf SDL2::SDL2)
+else()
+    target_link_libraries(abyss_crown PRIVATE SDL2_ttf::SDL2_ttf SDL2::SDL2)
 endif()
 
 if(MSVC)
